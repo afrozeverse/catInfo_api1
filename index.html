@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API-1</title>
+    <style>
+        body
+        {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #box{
+            height: 200px;
+            max-width: 800px;
+            margin: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
+            padding: 20px;
+            font-size: 22px;
+            color: #0b5ed7;
+        }
+        .container
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+#btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  width: 150px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+h1{
+    color: #ff6b6b;
+}
+#btn:hover {
+  background-color: #0b5ed7;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cat Info Using API</h1>
+    <div id="box">
+        Fact about cat would be shown here.
+    </div>
+    <button id="btn">Click</button>
+    </div>
+    <script>
+        async function getData() {
+            try{
+            let response= await fetch("https://catfact.ninja/fact");
+            let data=await response.json();
+            let box=document.querySelector("#box");
+            box.innerHTML=data.fact;
+            }catch(error){
+                console.log("Error hoyeche- ",error);
+            }
+        }
+        let btn=document.querySelector("#btn");
+        btn.addEventListener('click',getData);
+    </script>
+</body>
+</html>
